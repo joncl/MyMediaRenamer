@@ -5,7 +5,7 @@ A script to consistently rename photo and video files from various sources using
 
 Files are renamed as:
 
-   YYYY_MMDD_HHMMSS(_####)_$$$(_???).ext
+   YYYY_MMDD_HHMMSS(__####)__$$$(_???).ext
 
    YYYY: year
    MM:   month
