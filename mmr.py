@@ -508,7 +508,7 @@ class FileManager(MyMediaRenamerBase):
     def count_total_files(self, directory):
         for root, dir_names, file_names in os.walk(directory):
             self.total_files += len([f for f in file_names
-                                     if os.path.splitext(f)[1].replace('.', '') in self.all_ext_list])
+                                     if os.path.splitext(f)[1].replace('.', '').lower() in self.all_ext_list])
         print('Gathering info for {0} files...'.format(str(self.total_files)))
 
     @staticmethod
@@ -583,7 +583,11 @@ class ResultsManager():
 
     def rename(self, ):
         if self.prompt_for_rename is False:
-            print('Nothing to rename.')
+            print('Nothing to rename!')
+            print()
+            print('  HINT: You might them in a directory named with a camera tag')
+            print('        See config.py for camera tag names')
+
             return
         inpt = input('Rename these?... Hit y to rename, or any other key to abort:')
         print()
