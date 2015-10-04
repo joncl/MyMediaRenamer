@@ -158,7 +158,14 @@ class FileObject(MyMediaRenamerBase):
 
     def rename(self):
         if self.file_path != '' and self.root_path != '' and self.new_file_name != '':
-            os.rename(self.file_path, self.get_new_file_path())
+            new_file_path = self.get_new_file_path()
+            try:
+                os.rename(self.file_path, new_file_path)
+            except Exception as e:
+                print('Rename failed:')
+                print('     {0} to {1}'.format(self.file_path, new_file_path))
+                print()
+                print(str(e))
 
 
 class FileNameObject:
@@ -500,7 +507,7 @@ class FileManager(MyMediaRenamerBase):
 
     def print_status(self):
         self.count += 1
-        percent = '{0:.0f}%'.format(self.count/self.total_files * 100)
+        percent = '{0:.0f}%'.format(self.count / self.total_files * 100)
         sys.stdout.write('\b' * len(str(percent)))
         sys.stdout.flush()
         sys.stdout.write(str(percent))
